@@ -45,5 +45,7 @@ def merge_employees(timesheet: pd.DataFrame, employees: pd.DataFrame) -> pd.Data
     timesheet on the left, or `how="right"` with the frames swapped, both say
     "keep the timesheet's side" — pick whichever reads best to you.)
     """
-    # TODO: your code here
-    pass
+   
+    roster_subset = employees[["employee_id", "first_name", "last_name", "department", "hourly_rate", "hourly_rate_usd"]]
+    merged = pd.merge(timesheet, roster_subset, how="left", on="employee_id")
+    return merged
